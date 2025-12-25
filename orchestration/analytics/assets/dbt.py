@@ -5,16 +5,12 @@ from dagster_dbt import dbt_assets, DbtCliResource, DagsterDbtTranslator
 
 # construct relative path to the dbt project directory
 
-REPO_ROOT = Path.cwd().parent
-DBT_PROJECT_DIR = REPO_ROOT / "transformation" / "dw"
-
-dbt_warehouse_resource: DbtCliResource = DbtCliResource(
-    project_dir=str(DBT_PROJECT_DIR)
-)
 
 
 # dbt_project_dir = Path(__file__).joinpath("..","..","..", "..","..","transformation", "dw").resolve() # current_file_path -> navigate to dbt_project folder
 # dbt_warehouse_ressource: DbtCliResource = DbtCliResource(project_dir=os.fspath(dbt_project_dir))
+
+dbt_warehouse_ressource: DbtCliResource = DbtCliResource(project_dir="transformation/dw")
 
 # generate manifest.json and retrieve path to manifest json
 dbt_manifest_path = (
