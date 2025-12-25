@@ -1,0 +1,60 @@
+version: 2
+
+models:
+  - name: int_eeh_filtered
+    description: Intermediate model to filter EEH data based on business logic
+    columns:
+      - name: occupation_code
+        data_type: number
+        description: Occupation code
+        data_tests:
+          - not_null
+
+      - name: occupation
+        data_type: varchar
+        description: Occupation name
+        data_tests:
+          - not_null
+
+      - name: gender
+        data_type: varchar
+        description: Gender
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['Males', 'Females']
+
+      - name: year
+        data_type: number
+        description: Year
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [2016, 2018, 2021, 2023, 2025]
+
+
+      - name: avg_weekly_total_hours_paid_for
+        data_type: number
+        description: ""
+
+      - name: avg_weekly_total_cash_earnings
+        data_type: number
+        description: ""
+
+      - name: avg_weekly_ordinary_time_hours_paid_for
+        data_type: number
+        description: ""
+
+      - name: avg_weekly_ordinary_time_cash_earnings
+        data_type: number
+        description: ""
+
+      - name: avg_hourly_total_cash_earnings
+        data_type: number
+        description: ""
+
+      - name: avg_hourly_ordinary_time_cash_earnings
+        data_type: number
+        description: ""

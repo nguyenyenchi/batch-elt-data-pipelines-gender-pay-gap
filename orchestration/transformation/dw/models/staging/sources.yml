@@ -1,0 +1,29 @@
+sources:
+  - name: raw
+    database: airbyte_database
+    schema: eeh_raw
+    tables:
+      - name: eeh
+        description: employee earnings hours
+        columns:
+        - name: occupation
+          description: Occupation title
+        - name: gender
+          description: gender
+        - name: year
+          description: Year of census data
+
+      - name: employment
+        description: employment data from ABS 2024-2025
+        columns:
+        - name: ANZSCO LEVEL
+          description: ANZSCO level
+        - name: ANZSCO TITLE
+          description: ANZSCO title
+        - name: code
+          description: anzsco code
+
+      - name: eeh_test
+        description: employment data from ABS 2024-2025
+
+
