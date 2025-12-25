@@ -1,8 +1,7 @@
-
-
 from dagster import Definitions
-from analytics.assets.dbt import dbt_warehouse, dbt_warehouse_resource
+
 from analytics.assets.airbyte import airbyte_assets, airbyte_workspace
+from analytics.assets.dbt import dbt_warehouse, dbt_warehouse_resource
 
 defs = Definitions(
     assets=[*airbyte_assets, dbt_warehouse],
@@ -10,6 +9,6 @@ defs = Definitions(
     # schedules=[alpaca_etl_schedule],
     resources={
         "airbyte": airbyte_workspace,
-        "dbt_warehouse_resource": dbt_warehouse_resource
-    }
+        "dbt_warehouse_resource": dbt_warehouse_resource,
+    },
 )
