@@ -8,6 +8,11 @@ dependencies = [
     "boto3",
     "pandas",
     "matplotlib",
+    "dagster-airbyte",
+    "dagster-dbt",
+    "dbt_core",
+    "dbt_snowflake",
+    "pandas"
 ]
 
 [dependency-groups]

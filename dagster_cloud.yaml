@@ -2,4 +2,4 @@ locations:
 - code_source:
     module_name: analytics.definitions
   location_name: capstone_project
-  working_directory: ./src/
+  working_directory: ./orchestration/
