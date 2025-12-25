@@ -1,7 +1,0 @@
-data_tests:
-  - name: assert_no_duplicates
-    description: >
-      Assert that there are no duplicate occupation code, gender and year combinations in the models
-  - name: test_is_between
-    description: >
-      Test that numbers (float or non-float) were between a certain set of values
