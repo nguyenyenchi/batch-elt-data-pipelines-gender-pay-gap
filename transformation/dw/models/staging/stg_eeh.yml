@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: stg_eeh
+    description: EEH data
+    columns:
+      - name: occupation_code
+        data_type: varchar
+        description: occupation code 
+        data_tests:
+          - not_null
+
+      - name: occupation
+        data_type: varchar
+        description: occupation title
+        data_tests:
+          - not_null
+
+      - name: gender
+        data_type: varchar
+        description: gender 
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:  
+                values: ['Males', 'Females', 'Persons']
+
+      - name: year
+        data_type: number
+        description: Year of EEH datasets
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [2016, 2018, 2021, 2023]
+
+      - name: avg_weekly_total_hours_paid_for
+        data_type: float
+        description: ""
+
+      - name: avg_weekly_total_cash_earnings
+        data_type: float
+        description: ""
+
+      - name: avg_weekly_ordinary_time_hours_paid_for
+        data_type: float
+        description: ""
+
+      - name: avg_weekly_ordinary_time_cash_earnings
+        data_type: float
+        description: ""
+
+      - name: avg_hourly_total_cash_earnings
+        data_type: float
+        description: ""
+
+      - name: avg_hourly_ordinary_time_cash_earnings
+        data_type: float
+        description: ""

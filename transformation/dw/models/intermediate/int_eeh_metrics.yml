@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: int_eeh_metrics
+    description: Intermediate model to calculate EEH metrics
+    columns:
+      - name: year
+        data_type: number
+        description: ""
+
+      - name: occupation_code
+        data_type: number
+        description: ""
+
+      - name: gender
+        data_type: varchar
+        description: ""
+
+      - name: avg_weekly_earnings
+        data_type: number
+        description: ""
+
+      - name: avg_weekly_total_hours_paid_for
+        data_type: number
+        description: ""
+
+      - name: avg_hourly_total_cash_earnings
+        data_type: number
+        description: ""
+
+      - name: avg_weekly_earnings_last_year
+        data_type: number
+        description: ""
+
+      - name: earnings_yoy_change
+        data_type: number
+        description: ""
+
+      - name: earnings_yoy_growth_pct
+        data_type: number
+        description: ""
+        data_tests:
+          - is_between:
+              description: "Pct should be between -1 and 1"
+              arguments:
+                bottom_number: -1
+                top_number: 1
