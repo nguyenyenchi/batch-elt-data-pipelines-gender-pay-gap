@@ -1,4 +1,4 @@
-name: ci
+name: SQL Linting
 on: # trigger
   workflow_dispatch: {} # manual trigger
   pull_request:
