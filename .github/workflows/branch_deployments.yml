@@ -3,10 +3,10 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
     paths:
-      - 'orchestration/**'
-      - '!orchestration/README.md'  # exclude specific file
-      - 'transformation/**'
-      - '!transformation/README.md'  # exclude specific file
+      - 'orchestration/analytics/**'
+      - '!orchestration/analytics/README.md'  # exclude specific file
+      - 'transformation/dw/**'
+      - '!transformation/dw/README.md'  # exclude specific file
 
 
 concurrency:
