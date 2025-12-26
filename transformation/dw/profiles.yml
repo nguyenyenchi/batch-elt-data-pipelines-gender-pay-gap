@@ -1,6 +1,12 @@
 dw:
   target: dev
   outputs:
+    lint:
+      type: duckdb
+      path: ":memory:"
+      schema: main
+      threads: 4
+
     dev:
       type: snowflake
       account: JJAYKGF-CW51069

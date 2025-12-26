@@ -1,3 +1,6 @@
 ruff
 sqlfluff
 pandas
+sqlfluff-templater-dbt
+dbt-core
+dbt-duckdb
