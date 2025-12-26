@@ -7,7 +7,7 @@ on:
     paths:
       - 'orchestration/analytics/**'
       - '!orchestration/analytics/README.md'  # exclude specific file
-      - 'transformation/dw/**'
+      - 'transformation/dw/**/*.sql'
       - '!transformation/dw/README.md'  # exclude specific file
 
 concurrency:
