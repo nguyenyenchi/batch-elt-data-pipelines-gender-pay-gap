@@ -6,7 +6,7 @@ on:
       - "master"
     paths:
       - 'orchestration/**'
-      - '!orchestration/README.md'  # exclude specific file
+      # - '!orchestration/README.md'  # exclude specific file
       - 'transformation/**'
       - '!transformation/README.md'  # exclude specific file
 
