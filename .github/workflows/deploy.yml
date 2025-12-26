@@ -4,9 +4,9 @@ on:
     branches:
       - "main"
       - "master"
-  paths:
-    - 'orchestration/**'
-    # - '!orchestration/README.md'  # exclude specific file
+    paths:
+      - 'orchestration/**'
+      # - '!orchestration/README.md'  # exclude specific file
 
 concurrency:
   # Cancel in-progress deploys to same branch
