@@ -5,8 +5,8 @@ main() {
     export TOP_DIR=$(git rev-parse --show-toplevel) # gets the root of the repo
 
     # Run Ruff 
-    # ruff check "${TOP_DIR}/orchestration/analytics"
-    ruff check "${TOP_DIR}/integration"
+    ruff check "${TOP_DIR}/orchestration/analytics"
+
 }
 
 main
