@@ -40,21 +40,21 @@ models:
     staging:
       +materialized: table
       +database: airbyte_database
-      +schema: eeh_dev
+      +schema: "eeh_{{ target.name }}"
       +docs:
         node_color: "CadetBlue"
 
     intermediate:
       +materialized: table
       +database: airbyte_database
-      +schema: eeh_dev
+      +schema: "eeh_{{ target.name }}"
       +docs:
         node_color: "MediumSlateBlue"
 
     marts:
       +materialized: table
       +database: airbyte_database
-      +schema: eeh_dev
+      +schema: "eeh_{{ target.name }}"
 
       dimensions:
         +docs:
