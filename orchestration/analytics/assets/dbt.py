@@ -2,6 +2,7 @@ from pathlib import Path
 
 from dagster import AssetExecutionContext, AutomationCondition, EnvVar
 from dagster_dbt import DagsterDbtTranslator, DbtCliResource, dbt_assets
+import os
 
 # construct relative path to the dbt project directory
 # dbt_project_dir = Path(__file__).joinpath("..","..","..", "..","..","transformation", "dw").resolve() # current_file_path -> navigate to dbt_project folder
@@ -10,7 +11,9 @@ from dagster_dbt import DagsterDbtTranslator, DbtCliResource, dbt_assets
 # Set dbt target
 
 
-BRANCH = EnvVar("GIT_BRANCH")      # injected by CI/CD
+BRANCH = os.getenv("GIT_BRANCH")
+
+# BRANCH = EnvVar("GIT_BRANCH")      # injected by CI/CD
 DBT_TARGET = "prod" if BRANCH == "main" else "dev"
 
 dbt_warehouse_resource: DbtCliResource = DbtCliResource(project_dir="transformation/dw", target=DBT_TARGET)
