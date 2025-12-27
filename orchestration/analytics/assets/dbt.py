@@ -10,7 +10,7 @@ from dagster_dbt import DagsterDbtTranslator, DbtCliResource, dbt_assets
 # Set dbt target
 
 
-BRANCH = EnvVar("GIT_BRANCH", "local")      # injected by CI/CD
+BRANCH = EnvVar("GIT_BRANCH")      # injected by CI/CD
 DBT_TARGET = "prod" if BRANCH == "main" else "dev"
 
 dbt_warehouse_resource: DbtCliResource = DbtCliResource(project_dir="transformation/dw", target=DBT_TARGET)
