@@ -7,7 +7,7 @@ on: # trigger
       - 'transformation/dw/**/*.sql' # Triggers on changes in any SQL file within the 'transformation/dw' directory
 
 jobs:
-  sql_linter:
+  sql_ci:
     # compute/infrastructure
     runs-on: ubuntu-latest
     container:

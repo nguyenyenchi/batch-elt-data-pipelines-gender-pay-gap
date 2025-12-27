@@ -8,7 +8,7 @@ on: # trigger
       - 'orchestration/**/*.py' # Triggers on changes in any Python file within the 'integration' directory
 
 jobs:
-  python_linter:
+  python_ci:
     # compute/infrastructure
     runs-on: ubuntu-latest
     container:
