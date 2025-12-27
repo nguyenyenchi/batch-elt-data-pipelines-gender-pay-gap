@@ -1,5 +1,6 @@
 name: Serverless Branch Deployments
 on:
+  workflow_dispatch: {} # manual trigger
   pull_request:
     types: [opened, synchronize, reopened, closed]
     paths:

@@ -1,5 +1,6 @@
 name: Serverless Prod Deployment
 on:
+  workflow_dispatch: {} # manual trigger
   push:
     branches:
       - "main"
