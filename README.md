@@ -79,7 +79,7 @@ Data Sources:
 
 ## 4. CI/CD with Dagster Cloud and Github Actions
 
-This section explains what happens when a new change e.g. a new file for year 2025 is added to local development and how it's triggered downstream processes.
+This section explains what happens when a new change e.g. a new file for year 2025 is added to local development (the orchestration (python scripts) and transformation codes (sql models)) and how it triggers downstream processes.
 
 #### Create a feature branch
 Start from main and create a new branch for your changes
