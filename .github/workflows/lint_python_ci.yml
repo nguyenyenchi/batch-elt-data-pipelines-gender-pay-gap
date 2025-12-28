@@ -4,7 +4,6 @@ on: # trigger
   pull_request:
     branches: [ main ] # on pull request that targets the main branch, trigger this workflow.
     paths:
-      # - 'orchestration/analytics/**/*.py' # Triggers on changes in any Python file within the 'orchestration/analytics' directory
       - 'orchestration/**/*.py' # Triggers on changes in any Python file within the 'integration' directory
 
 jobs:

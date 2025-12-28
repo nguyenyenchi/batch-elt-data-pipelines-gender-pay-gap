@@ -3,11 +3,6 @@ on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
 
-  # workflow_run:
-  #   workflows: ["SQL Linting", "Python Linting"] #Its the name of an workflow
-  #   types:
-  #     - completed
-
 concurrency:
   # Cancel in-progress deploys to same branch
   group: ${{ github.ref }}/branch_deployments
