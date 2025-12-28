@@ -3,9 +3,14 @@ on:
   workflow_dispatch: {} # manual trigger
   # pull_request:
   #   types: [opened, synchronize, reopened, closed]
+
   push:
-    branches:
-      - "main"
+    branches-ignore:
+      - main
+  pull_request:
+    branches-ignore:
+      - main
+
     paths:
       - 'orchestration/analytics/**'
       - '!orchestration/analytics/README.md'  # exclude specific file
