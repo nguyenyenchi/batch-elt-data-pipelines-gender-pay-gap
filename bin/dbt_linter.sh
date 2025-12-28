@@ -10,6 +10,7 @@ main() {
     # Sqlfluff on dbt
     # sqlfluff lint "${TOP_DIR}/transformation/dw"
 
+    # Keep using --config to point exactly at the file that sets templater = dbt
     sqlfluff fix --config "${TOP_DIR}/transformation/.sqlfluff" "${TOP_DIR}/transformation/dw/models"
 }
 
