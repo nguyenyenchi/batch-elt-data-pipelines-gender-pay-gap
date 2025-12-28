@@ -9,7 +9,8 @@ The ABS Employee Earnings and Hours (EEH) dataset does not provide occupation-le
 1. [Project Structure](#project-structure)
 2. [Solution Architecture](#solution-architecture)
 3. [Pipeline Breakdown](#pipeline-breakdown)
-4. [Future Improvements](#future-improvements)
+4. [CI/CD](#ci-cd)
+5. [Future Improvements](#future-improvements)
 
 
 ## 1. Project Structure
@@ -43,8 +44,6 @@ Data Sources:
 
 ## 3. Pipeline Breakdown
 
-### Development Branch
-
 - Data Collection:
     - Historical data in Excel formats are downloaded from ABS
     - Light preprocessing using Python script to convert the Excel files to csv files for storage in S3 buckets and ingestion in Snowflake
@@ -56,7 +55,41 @@ Data Sources:
 - Automation & Monitoring: Dagster schedules and CI/CD integration
 
 
-## 4. Future Improvements
+## 4. CI/CD with Dagster Cloud and Github Actions
+### 1. Create a feature branch
+Start from main and create a new branch for your changes
+```
+git checkout -b "new-branch"
+```
+
+### 2. Make the changes to codes and publish the branch
+Commit the changes and publish the branch to the remote repository.
+```
+git add .
+git commit -m "added new dbt models"
+git push --set-upstream origin new-branch
+```
+
+### 3. Open a Pull Request (PR) to main
+This triggers linting and validation checks (e.g., dbt linting, Python linting) via CI workflows.
+
+### 4. Deploy the branch to Dagster Cloud Dev
+The above PR also triggers Dagster Cloud to create or update a branch deployment in the Dev environment named "new-branch".
+- Definitions are loaded for the branch.
+- Then we manually Materialise assets to populate tables in the Dev schema in Snowflake.
+
+### 5. Validate the Dev environment
+Run tests and review dashboards to ensure data quality and correctness.
+- If issues are found → fix the branch and redeploy to Dev.
+- If everything looks good → proceed to merge the PR to main.
+
+### 6. Merge the branch into main
+This automatically triggers the Dagster Cloud Prod deployment workflow:
+- Reloads Prod definitions.
+- Materialises assets to populate tables in the Prod schema.
+
+
+## 5. Future Improvements
 
 - Automate dashboard refreshes by adding Power BI as an asset in Dagster Cloud
 - Advanced analytics (e.g., machine learning models)
