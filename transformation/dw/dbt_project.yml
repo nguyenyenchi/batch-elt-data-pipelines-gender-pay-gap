@@ -55,17 +55,3 @@ models:
       +materialized: table
       +database: airbyte_database
       +schema: "eeh_marts_{{ target.name }}"
-
-      dimensions:
-        +docs:
-          node_color: "Maroon"
-        +tags: "dim"
-
-      facts:
-        +docs:
-          node_color: "#800080"
-
-      one_big_tables:
-        +docs:
-          node_color: "#36454f"
-
