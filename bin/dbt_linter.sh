@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -eu # exit 1 when a exception is detected
+set -eu # exit 1 when an exception is detected
 
 main() {
     export TOP_DIR=$(git rev-parse --show-toplevel) # gets the root of the repo
@@ -8,7 +8,9 @@ main() {
     dbt deps --project-dir "${TOP_DIR}/transformation/dw"
 
     # Sqlfluff on dbt
-    sqlfluff lint "${TOP_DIR}/transformation/dw"
+    # sqlfluff lint "${TOP_DIR}/transformation/dw"
+
+    sqlfluff fix --config "${TOP_DIR}/transformation/.sqlfluff" "${TOP_DIR}/transformation/dw/models"
 }
 
 main

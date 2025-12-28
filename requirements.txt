@@ -7,3 +7,4 @@ dbt-duckdb
 pytest
 boto3
 ipykernel
+dbt-snowflake

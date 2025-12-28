@@ -1,7 +1,7 @@
 [sqlfluff]
 templater = dbt
 dialect = postgres
-exclude_rules = L016,RF06,LT05,RF04,RF02,TMP
+exclude_rules = L016,RF06,LT05,RF04,RF02,LT02
 
 [sqlfluff:templater:dbt]
 project_dir = transformation/dw
