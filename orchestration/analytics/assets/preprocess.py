@@ -1,6 +1,8 @@
 import boto3
 from dagster import asset
 
+
+# Upload csv files to S3 bucket
 @asset()
 def upload_to_s3():
     s3 = boto3.client("s3")

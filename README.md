@@ -43,17 +43,17 @@ Data Sources:
 
 ## 3. Pipeline Breakdown
 
-Data Ingestion: Batch pulls of historical ABS data
-Processing & Transformation:
+### Development Branch
 
-Deduplication
-Normalization & enrichment
-Aggregations for gender pay gap metrics
-
-
-Data Storage: Snowflake staging → marts
-Analytics & Visualization: Power BI dashboards for earnings and gap trends
-Automation & Monitoring: Dagster schedules and CI/CD integration
+- Data Collection:
+    - Historical data in Excel formats are downloaded from ABS
+    - Light preprocessing using Python script to convert the Excel files to csv files for storage in S3 buckets and ingestion in Snowflake
+- Data Ingestion:
+    - Since each file contains historical data and we know that the source data won't change (only use past data) goind forward, the sync mode is set to incremental append in airbyte i.e. when a new file comes in, it will contains only new data, so it will be appended to the raw tables in Snowflake. What are some caveats with this?
+- Data Storage and Transformation:
+    - Using dbt, data is transformed from raw -> staging -> marts models ready for consumption for dashboard and analytics
+- Analytics & Visualisation: Power BI dashboards for earnings and gender pay gap trends
+- Automation & Monitoring: Dagster schedules and CI/CD integration
 
 
 ## 4. Future Improvements

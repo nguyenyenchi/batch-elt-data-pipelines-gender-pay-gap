@@ -42,6 +42,6 @@ jobs:
         run: |
           bash ./bin/python_linter.sh
 
-      # - name: Run pytest
-      #   run: |
-      #     bash ./bin/python_test.sh
+      - name: Run pytest
+        run: |
+          bash ./bin/python_test.sh
