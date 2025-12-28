@@ -11,14 +11,10 @@ on:
   #     - '!transformation/dw/README.md'  # exclude specific file
 
 
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to deploy'
-        required: true
-        default: 'dev'
-
-
+  workflow_run:
+    workflows: ["SQL Linting", "Python Linting"] #Its the name of an workflow
+    types:
+      - completed
 
 concurrency:
   # Cancel in-progress deploys to same branch
