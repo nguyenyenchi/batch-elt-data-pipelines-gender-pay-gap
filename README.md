@@ -44,25 +44,50 @@ Data Sources:
 
 ## 3. Pipeline Breakdown
 
-- Data Collection:
-    - Historical data in Excel formats are downloaded from ABS
-    - Light preprocessing using Python script to convert the Excel files to csv files for storage in S3 buckets and ingestion in Snowflake
-- Data Ingestion:
-    - Since each file contains historical data and we know that the source data won't change (only use past data) goind forward, the sync mode is set to incremental append in airbyte i.e. when a new file comes in, it will contains only new data, so it will be appended to the raw tables in Snowflake. What are some caveats with this?
-- Data Storage and Transformation:
-    - Using dbt, data is transformed from raw -> staging -> marts models ready for consumption for dashboard and analytics
-- Analytics & Visualisation: Power BI dashboards for earnings and gender pay gap trends
-- Automation & Monitoring: Dagster schedules and CI/CD integration
+- Data Collection
+
+    - Historical datasets in Excel format are sourced from the ABS.
+    - A lightweight Python preprocessing step converts these Excel files into CSV format for storage in **S3 buckets**, enabling downstream ingestion into **Snowflake**.
+
+        ![S3](Docs\images\S3.png)
+
+
+- Data Ingestion
+    - Although the source data is historical, updates may occur in the future.
+    - To handle this, Airbyte uses the Incremental Append + Deduped sync mode.
+        - Example: The original file 2016.csv exists in S3, but a new file 2026_updated.csv might arrive later.
+        - Airbyte appends new records and removes duplicates based on defined primary keys.
+        ![airbyte](Docs\images\airbyte.png)
+
+        ![airbyte-sync](Docs\images\airbyte-sync.png)
+
+- Data Storage & Transformation
+    - dbt transforms data through a layered approach: raw → staging → marts, producing analytics-ready models.
+    - Separate schemas are maintained for each environment:
+        - Dev: eeh_staging_dev, eeh_marts_dev
+        - Prod: eeh_staging_prod, eeh_marts_prod
+
+        ![tables](Docs\images\tables.png)
+
+- Analytics & Visualization
+    - Power BI dashboards connect to the Dev schema (for testing) and the deployed to Prod schema, leveraging fact and dimension tables to deliver insights on earnings and gender pay gap trends.
+
+    ![dashboard](Docs\images\dashboard.png)
+- Automation & Monitoring
+    - See Section 4 for details on CI/CD orchestration.
 
 
 ## 4. CI/CD with Dagster Cloud and Github Actions
-### 1. Create a feature branch
+
+This section explains what happens when a new change e.g. a new file for year 2025 is added to local development and how it's triggered downstream processes.
+
+#### Create a feature branch
 Start from main and create a new branch for your changes
 ```
 git checkout -b "new-branch"
 ```
 
-### 2. Make the changes to codes and publish the branch
+#### Make the changes to codes and publish the branch
 Commit the changes and publish the branch to the remote repository.
 ```
 git add .
@@ -70,27 +95,38 @@ git commit -m "added new dbt models"
 git push --set-upstream origin new-branch
 ```
 
-### 3. Open a Pull Request (PR) to main
+#### Open a Pull Request (PR) to main
 This triggers linting and validation checks (e.g., dbt linting, Python linting) via CI workflows.
 
-### 4. Deploy the branch to Dagster Cloud Dev
+#### Deploy the branch to Dagster Cloud Dev
 The above PR also triggers Dagster Cloud to create or update a branch deployment in the Dev environment named "new-branch".
 - Definitions are loaded for the branch.
 - Then we manually Materialise assets to populate tables in the Dev schema in Snowflake.
 
-### 5. Validate the Dev environment
+#### Validate the Dev environment
 Run tests and review dashboards to ensure data quality and correctness.
 - If issues are found → fix the branch and redeploy to Dev.
 - If everything looks good → proceed to merge the PR to main.
 
-### 6. Merge the branch into main
+#### Merge the branch into main
 This automatically triggers the Dagster Cloud Prod deployment workflow:
 - Reloads Prod definitions.
 - Materialises assets to populate tables in the Prod schema.
 
+ ![workflow-runs](Docs\images\workflow-runs.png)
 
 ## 5. Future Improvements
 
 - Automate dashboard refreshes by adding Power BI as an asset in Dagster Cloud
-- Advanced analytics (e.g., machine learning models)
-- Enhanced data quality checks
+- Add advanced analytics (e.g., machine learning models)
+- Enhanced CI/CD Workflows:
+Expand automation to include:
+    - Automated testing gates for dbt models and data quality checks before deployment.
+    - Branch-based ephemeral environments for rapid feature validation.
+    - Continuous deployment to Dev and Prod with rollback strategies for safer releases.
+- Observability & Data Quality Monitoring
+    - Add Dagster sensors and alerts for schema changes, failed materializations, and data drift detection.
+- Scalability & Performance Optimisation
+    - Implement Snowflake resource monitors, query tagging, and warehouse auto-scaling to optimize cost and performance.
+- Documentation & Governance
+    - Automate generation and hosting of dbt docs and lineage graphs for better transparency and compliance.
