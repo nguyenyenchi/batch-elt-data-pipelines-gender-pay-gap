@@ -16,10 +16,10 @@ The ABS Employee Earnings and Hours (EEH) dataset does not provide occupation-le
 ## 1. Project Structure
 
 - `Main branch`: Project overview and architecture
-- `integration/`: End-to-end batch pipeline integration [integration](/integration/README.md)
-- `orchestration/`: Scheduling and orchestration [orchestration](/orchestration/README.md)
-- `transformation/`: dbt project for data modeling [transformation](/transformation/README.md)
-- `visualisation/`: BI dashboards for analytics [visualisation](/visualisation/README.md)
+- `integration/`: End-to-end batch pipeline integration
+- `orchestration/`: Scheduling and orchestration
+- `transformation/`: dbt project for data modeling
+- `visualisation/`: BI dashboards for analytics
 - `Docs/`: Architecture diagrams and supporting visuals
 
 
@@ -79,7 +79,7 @@ Data Sources:
 
 ## 4. CI/CD with Dagster Cloud and Github Actions
 
-This section explains what happens when a new change e.g. a new file for year 2025 is added to local development and how it's triggered downstream processes.
+This section explains what happens when a new change e.g. a new file for year 2025 is added to local development (the orchestration (python scripts) and transformation (sql models) folders) and how it's triggered downstream processes.
 
 #### Create a feature branch
 Start from main and create a new branch for your changes
