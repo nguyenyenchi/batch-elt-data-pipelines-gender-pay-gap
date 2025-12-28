@@ -49,7 +49,7 @@ Data Sources:
     - Historical datasets in Excel format are sourced from the ABS.
     - A lightweight Python preprocessing step converts these Excel files into CSV format for storage in **S3 buckets**, enabling downstream ingestion into **Snowflake**.
 
-        ![S3](Docs\images\S3.png)
+        ![S3](/Docs/images/S3.png)
 
 
 - Data Ingestion
@@ -57,7 +57,7 @@ Data Sources:
     - To handle this, Airbyte uses the Incremental Append + Deduped sync mode.
         - Example: The original file 2016.csv exists in S3, but a new file 2026_updated.csv might arrive later.
         - Airbyte appends new records and removes duplicates based on defined primary keys.
-        ![airbyte](Docs\images\airbyte.png)
+        ![airbyte](/Docs/images/airbyte.png)
 
         ![airbyte-sync](Docs\images\airbyte-sync.png)
 
