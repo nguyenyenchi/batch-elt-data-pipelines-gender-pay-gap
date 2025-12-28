@@ -1,20 +1,12 @@
 name: Serverless Branch Deployments
 on:
-  # workflow_dispatch: {} # manual trigger
-  # push:
-  #   branches:
-  #     - "dev"
-  #   paths:
-  #     - 'orchestration/analytics/**'
-  #     - '!orchestration/analytics/README.md'  # exclude specific file
-  #     - 'transformation/dw/**/*.sql'
-  #     - '!transformation/dw/README.md'  # exclude specific file
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
 
-
-  workflow_run:
-    workflows: ["SQL Linting", "Python Linting"] #Its the name of an workflow
-    types:
-      - completed
+  # workflow_run:
+  #   workflows: ["SQL Linting", "Python Linting"] #Its the name of an workflow
+  #   types:
+  #     - completed
 
 concurrency:
   # Cancel in-progress deploys to same branch
@@ -63,28 +55,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # dagster_cloud_docker_deploy:
-  #   name: Docker Deploy
-  #   runs-on: ubuntu-22.04
-  #   if: needs.dagster_cloud_default_deploy.outputs.build_info
-  #   needs: dagster_cloud_default_deploy
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       location: ${{ fromJSON(needs.dagster_cloud_default_deploy.outputs.build_info) }}
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v4
-  #       with:
-  #         ref: ${{ github.head_ref }}
-  #     - name: Build and deploy to Dagster Cloud serverless
-  #       uses: dagster-io/dagster-cloud-action/actions/serverless_branch_deploy@v1.12.7
-  #       with:
-  #         dagster_cloud_api_token: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
-  #         location: ${{ toJson(matrix.location) }}
-  #         base_image: "python:${{ env.PYTHON_VERSION }}-slim"
-  #         # Uncomment to pass through Github Action secrets as a JSON string of key-value pairs
-  #         # env_vars: ${{ toJson(secrets) }}
-  #         organization_id: ${{ secrets.ORGANIZATION_ID }}
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  dagster_cloud_docker_deploy:
+    name: Docker Deploy
+    runs-on: ubuntu-22.04
+    if: needs.dagster_cloud_default_deploy.outputs.build_info
+    needs: dagster_cloud_default_deploy
+    strategy:
+      fail-fast: false
+      matrix:
+        location: ${{ fromJSON(needs.dagster_cloud_default_deploy.outputs.build_info) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Build and deploy to Dagster Cloud serverless
+        uses: dagster-io/dagster-cloud-action/actions/serverless_branch_deploy@v1.12.7
+        with:
+          dagster_cloud_api_token: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
+          location: ${{ toJson(matrix.location) }}
+          base_image: "python:${{ env.PYTHON_VERSION }}-slim"
+          # Uncomment to pass through Github Action secrets as a JSON string of key-value pairs
+          # env_vars: ${{ toJson(secrets) }}
+          organization_id: ${{ secrets.ORGANIZATION_ID }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
