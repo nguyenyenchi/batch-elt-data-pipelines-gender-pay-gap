@@ -2,6 +2,11 @@ name: Serverless Branch Deployments
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
+    paths:
+      - 'orchestration/analytics/**'
+      - '!orchestration/analytics/README.md'  # exclude specific file
+      - 'transformation/dw/**/*.sql'
+      - '!transformation/dw/README.md'  # exclude specific file
 
 concurrency:
   # Cancel in-progress deploys to same branch
