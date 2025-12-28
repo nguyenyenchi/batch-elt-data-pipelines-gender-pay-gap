@@ -5,7 +5,7 @@ from dagster_airbyte import (
     DagsterAirbyteTranslator,
     build_airbyte_assets_definitions,
 )
-from analytics.assets.preprocess import upload_to_s3
+
 
 # https://docs.dagster.io/api/libraries/dagster-airbyte
 
@@ -13,7 +13,6 @@ class CustomDagsterAirbyteTranslator(DagsterAirbyteTranslator):
     def get_asset_spec(self, props: AirbyteConnectionTableProps) -> AssetSpec:
         default_spec = super().get_asset_spec(props)
         return default_spec.replace_attributes(
-            deps=[upload_to_s3],
             key=AssetKey(["raw", props.table_name]),
             group_name="airbyte_assets",
             # automation_condition=AutomationCondition.on_cron(cron_schedule="* * * * *")
