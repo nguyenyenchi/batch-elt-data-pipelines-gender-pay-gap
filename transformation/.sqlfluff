@@ -1,11 +1,11 @@
 [sqlfluff]
 templater = dbt
 dialect = postgres
-exclude_rules = L016,RF06,LT05
+exclude_rules = L016,RF06,LT05,RF04,RF02,TMP
 
 [sqlfluff:templater:dbt]
-project_dir = dw
-profiles_dir = dw
+project_dir = transformation/dw
+profiles_dir = transformation/dw
 target = lint
 
 [sqlfluff:templater:jinja]

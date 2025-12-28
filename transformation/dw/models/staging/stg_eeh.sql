@@ -26,5 +26,5 @@ SELECT
     CAST("AVERAGE HOURLY ORDINARY TIME CASH EARNINGS" AS NUMBER (10, 1)) AS avg_hourly_ordinary_time_cash_earnings
 FROM raw_eeh
 {% if is_incremental() %}
-    where year > (select max(year) from {{ this }} )
+    WHERE year > (SELECT MAX(year) FROM {{ this }})
 {% endif %}
