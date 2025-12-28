@@ -1,14 +1,14 @@
 name: Serverless Prod Deployment
 on:
   workflow_dispatch: {} # manual trigger
-  # push:
-  #   branches:
-  #     - "main"
-  #   paths:
-  #     - 'orchestration/analytics/**'
-  #     - '!orchestration/analytics/README.md'  # exclude specific file
-  #     - 'transformation/dw/**/*.sql'
-  #     - '!transformation/dw/README.md'  # exclude specific file
+  push:
+    branches:
+      - "main"
+    paths:
+      - 'orchestration/analytics/**'
+      - '!orchestration/analytics/README.md'  # exclude specific file
+      - 'transformation/dw/**/*.sql'
+      - '!transformation/dw/README.md'  # exclude specific file
 
 concurrency:
   # Cancel in-progress deploys to same branch

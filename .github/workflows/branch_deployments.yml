@@ -1,14 +1,23 @@
 name: Serverless Branch Deployments
 on:
-  workflow_dispatch: {} # manual trigger
-  push:
-    branches:
-      - "main"
-    paths:
-      - 'orchestration/analytics/**'
-      - '!orchestration/analytics/README.md'  # exclude specific file
-      - 'transformation/dw/**/*.sql'
-      - '!transformation/dw/README.md'  # exclude specific file
+  # workflow_dispatch: {} # manual trigger
+  # push:
+  #   branches:
+  #     - "dev"
+  #   paths:
+  #     - 'orchestration/analytics/**'
+  #     - '!orchestration/analytics/README.md'  # exclude specific file
+  #     - 'transformation/dw/**/*.sql'
+  #     - '!transformation/dw/README.md'  # exclude specific file
+
+
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to deploy'
+        required: true
+        default: 'dev'
+
 
 
 concurrency:
