@@ -24,7 +24,7 @@ The ABS Employee Earnings and Hours (EEH) dataset does not provide occupation-le
 
 
 ## 2. Solution Architecture
-![Pipeline Architecture Diagram](Docs\images\architecture.png)
+![Architecture Diagram](/Docs/images/architecture.png)
 
 
 Data Sources:
@@ -44,12 +44,15 @@ Data Sources:
 
 ## 3. Pipeline Breakdown
 
+
+
+
 - Data Collection
 
     - Historical datasets in Excel format are sourced from the ABS.
     - A lightweight Python preprocessing step converts these Excel files into CSV format for storage in **S3 buckets**, enabling downstream ingestion into **Snowflake**.
 
-        ![S3](/Docs/images/S3.png)
+        ![S3](/Docs/images/s3.png)
 
 
 - Data Ingestion
@@ -59,7 +62,7 @@ Data Sources:
         - Airbyte appends new records and removes duplicates based on defined primary keys.
         ![airbyte](/Docs/images/airbyte.png)
 
-        ![airbyte-sync](Docs\images\airbyte-sync.png)
+        ![airbyte-sync](/Docs/images/airbyte-sync.png)
 
 - Data Storage & Transformation
     - dbt transforms data through a layered approach: raw → staging → marts, producing analytics-ready models.
@@ -67,17 +70,19 @@ Data Sources:
         - Dev: eeh_staging_dev, eeh_marts_dev
         - Prod: eeh_staging_prod, eeh_marts_prod
 
-        ![tables](Docs\images\tables.png)
+        ![tables](/Docs/images/tables.png)
 
 - Analytics & Visualization
     - Power BI dashboards connect to the Dev schema (for testing) and the deployed to Prod schema, leveraging fact and dimension tables to deliver insights on earnings and gender pay gap trends.
 
-    ![dashboard](Docs\images\dashboard.png)
+    ![dashboard](/Docs/images/dashboard.png)
 - Automation & Monitoring
     - See Section 4 for details on CI/CD orchestration.
 
 
 ## 4. CI/CD with Dagster Cloud and Github Actions
+
+![cicd](/Docs/images/cicd.png)
 
 This section explains what happens when a new change e.g. a new file for year 2025 is added to local development (the orchestration (python scripts) and transformation (sql models) folders) and how it's triggered downstream processes.
 
@@ -113,7 +118,7 @@ This automatically triggers the Dagster Cloud Prod deployment workflow:
 - Reloads Prod definitions.
 - Materialises assets to populate tables in the Prod schema.
 
- ![workflow-runs](Docs\images\workflow-runs.png)
+ ![workflow-runs](/Docs/images/workflow-runs.png)
 
 ## 5. Future Improvements
 
