@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - 'orchestration/analytics/**'
-      - '!orchestration/analytics/README.md'  # exclude specific file
-      - 'transformation/dw/**/*.sql'
-      - '!transformation/dw/README.md'  # exclude specific file
+    # paths:
+    #   - 'orchestration/analytics/**'
+    #   - '!orchestration/analytics/README.md'  # exclude specific file
+    #   - 'transformation/dw/**/*.sql'
+    #   - '!transformation/dw/README.md'  # exclude specific file
 
 concurrency:
   # Cancel in-progress deploys to same branch

@@ -72,6 +72,10 @@ Data Sources:
 
         ![tables](/Docs/images/tables.png)
 
+- Data Orchestration
+    - Dagster assets include Airbyte and dbt assets.
+        ![dagster-assets](/Docs/images/dagster-assets.png)
+
 - Analytics & Visualization
     - Power BI dashboards connect to the Dev schema (for testing) and the deployed to Prod schema, leveraging fact and dimension tables to deliver insights on earnings and gender pay gap trends.
 
@@ -112,6 +116,9 @@ The above PR also triggers Dagster Cloud to create or update a branch deployment
 Run tests and review dashboards to ensure data quality and correctness.
 - If issues are found → fix the branch and redeploy to Dev.
 - If everything looks good → proceed to merge the PR to main.
+
+
+ ![dagster-runs](/Docs/images/dagster-runs.png)
 
 #### Merge the branch into main
 This automatically triggers the Dagster Cloud Prod deployment workflow:
