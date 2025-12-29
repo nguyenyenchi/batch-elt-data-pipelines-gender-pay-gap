@@ -134,17 +134,6 @@ This automatically triggers the Dagster Cloud Prod deployment workflow:
  ![workflow-runs](/Docs/images/workflow-runs.png)
 
 ## 5. Future Improvements
-
+- Experiment using EventBridge, lamda functions,... on AWS to trigger Dagster whenever a new csv file lands in S3 buckets.
 - Automate dashboard refreshes by adding Power BI as an asset in Dagster Cloud
 - Add advanced analytics (e.g., machine learning models)
-- Enhanced CI/CD Workflows:
-Expand automation to include:
-    - Automated testing gates for dbt models and data quality checks before deployment.
-    - Branch-based ephemeral environments for rapid feature validation.
-    - Continuous deployment to Dev and Prod with rollback strategies for safer releases.
-- Observability & Data Quality Monitoring
-    - Add Dagster sensors and alerts for schema changes, failed materializations, and data drift detection.
-- Scalability & Performance Optimisation
-    - Implement Snowflake resource monitors, query tagging, and warehouse auto-scaling to optimize cost and performance.
-- Documentation & Governance
-    - Automate generation and hosting of dbt docs and lineage graphs for better transparency and compliance.
