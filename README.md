@@ -2,8 +2,6 @@
 
 This repository contains a Batch Data Engineering Pipeline that delivers an end-to-end workflow—from raw data ingestion to analytics-ready insights. It processes data from the Australian Bureau of Statistics (ABS), applies transformations, and produces aggregated datasets for business intelligence, focusing on gender pay gap trends across occupations between 2016 and 2023 in Australia.
 
-The ABS Employee Earnings and Hours (EEH) dataset does not provide occupation-level cuts. This pipeline bridges that gap by ingesting and transforming EEH and related labour data to enable deeper insights through a visual dashboard.
-
 ## Table of Contents
 
 1. [Project Structure](#1-project-structure)
@@ -34,18 +32,15 @@ Data Sources:
     - [National Occupation Trend - August 2025](https://www.jobsandskills.gov.au/data/labour-force-trending). Sourced from ABS's [Labour Force, Australia, Detailed](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/latest-release). Quarterly employment data at different levels of occupations.
 
 - **S3 Buckets**: Store preprocessed CSV files from ABS Excel sources
-- **Airbyte Cloud**: Custom connectors for incremental ingestion from S3 to Snowflake
-- **Snowflake**: Cloud data warehouse for staging and marts
-- **dbt**: Data transformation and modeling
+- **Airbyte Cloud**: Connections for incremental ingestion from S3 to Snowflake
+- **Snowflake**: Cloud data warehouse for raw, staging and marts data models
+- **dbt**: Data transformation and dimesional data modelling
 - **Dagster+**: Cloud orchestration tool for data ingestion, Airbyte sync, and dbt runs
 - **Power BI**: Dashboards showing gender pay gap metrics by occupation and year
 - **CI/CD (GitHub Actions)**: Automates linting, testing and Dagster Cloud deployment on PR merges
 
 
 ## 3. Pipeline Breakdown
-
-
-
 
 - Data Collection
 
@@ -79,8 +74,8 @@ Data Sources:
     - Dagster assets include Airbyte and dbt assets.
         ![dagster-assets](/Docs/images/dagster-assets.png)
 
-- Analytics & Visualization
-    - Power BI dashboards connect to the Dev schema (for testing) and the deployed to Prod schema, leveraging fact and dimension tables to deliver insights on earnings and gender pay gap trends.
+- Analytics & Visualisation
+    - Power BI dashboards connect to the marts tables in Dev schema (for testing) and then deployed to Prod schema, leveraging fact and dimension tables to deliver insights on earnings and gender pay gap trends.
 
 
     ![semantic-layer](/Docs/images/semantic-layer.png)
@@ -94,7 +89,7 @@ Data Sources:
 
 ![cicd](/Docs/images/cicd.png)
 
-This section explains what happens when a new change e.g. a new file for year 2025 is added to local development (the orchestration (python scripts) and transformation (sql models) folders) and how it's triggered downstream processes.
+This section explains what happens when a new change e.g. a new file for year 2025 is added to local development (the orchestration (python scripts) and transformation (sql models) folders) and how it triggers downstream processes.
 
 #### Create a feature branch
 Start from main and create a new branch for your changes
@@ -130,6 +125,7 @@ Run tests and review dashboards to ensure data quality and correctness.
 This automatically triggers the Dagster Cloud Prod deployment workflow:
 - Reloads Prod definitions.
 - Materialises assets to populate tables in the Prod schema.
+- Refresh the dashboard.
 
  ![workflow-runs](/Docs/images/workflow-runs.png)
 
