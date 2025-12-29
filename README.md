@@ -72,12 +72,18 @@ Data Sources:
 
         ![tables](/Docs/images/tables.png)
 
+        dbt-lineage
+        ![dbt-lineage](/Docs/images/dbt-lineage.png)
+
 - Data Orchestration
     - Dagster assets include Airbyte and dbt assets.
         ![dagster-assets](/Docs/images/dagster-assets.png)
 
 - Analytics & Visualization
     - Power BI dashboards connect to the Dev schema (for testing) and the deployed to Prod schema, leveraging fact and dimension tables to deliver insights on earnings and gender pay gap trends.
+
+
+    ![semantic-layer](/Docs/images/semantic-layer.png)
 
     ![dashboard](/Docs/images/dashboard.png)
 - Automation & Monitoring
