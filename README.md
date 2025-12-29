@@ -6,16 +6,16 @@ The ABS Employee Earnings and Hours (EEH) dataset does not provide occupation-le
 
 ## Table of Contents
 
-1. [Project Structure](#project-structure)
-2. [Solution Architecture](#solution-architecture)
-3. [Pipeline Breakdown](#pipeline-breakdown)
-4. [CI/CD](#ci-cd)
-5. [Future Improvements](#future-improvements)
+1. [Project Structure](#1-project-structure)
+2. [Solution Architecture](#2-solution-architecture)
+3. [Pipeline Breakdown](#3-pipeline-breakdown)
+4. [CI/CD](#4-cicd-with-dagster-cloud-and-github-actions)
+5. [Future Improvements](#5-future-improvements)
 
 
 ## 1. Project Structure
 
-- `Main branch`: Project overview and architecture
+- `Main`: Project overview and architecture
 - `integration/`: End-to-end batch pipeline integration
 - `orchestration/`: Scheduling and orchestration
 - `transformation/`: dbt project for data modeling
@@ -136,4 +136,3 @@ This automatically triggers the Dagster Cloud Prod deployment workflow:
 ## 5. Future Improvements
 - Experiment using EventBridge, lamda functions,... on AWS to trigger Dagster whenever a new csv file lands in S3 buckets.
 - Automate dashboard refreshes by adding Power BI as an asset in Dagster Cloud
-- Add advanced analytics (e.g., machine learning models)
