@@ -5,6 +5,12 @@ models:
       - dbt_utils.expression_is_true:
           arguments:
             expression: "weekly_earnings_gap = male_weekly_earnings - female_weekly_earnings"
+      - no_duplicates:
+          description: >
+            There should be no duplicate occupation code and year combinations in the fact table
+          column_names:
+            - occupation_code
+            - year
     columns:
       - name: occupation_code
         data_type: varchar

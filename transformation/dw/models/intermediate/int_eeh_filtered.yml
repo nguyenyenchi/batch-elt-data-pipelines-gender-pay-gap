@@ -3,6 +3,14 @@ version: 2
 models:
   - name: int_eeh_filtered
     description: Intermediate model to filter EEH data based on business logic
+    data_tests:
+      - no_duplicates:
+          description: >
+            There should be no duplicate occupation code, gender and year combinations in the fact table
+          column_names:
+            - occupation_code
+            - year
+            - gender
     columns:
       - name: occupation_code
         data_type: number
