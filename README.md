@@ -24,9 +24,6 @@ This repository contains a Batch Data Engineering Pipeline that delivers an end-
 ## 2. Solution Architecture
 ![Architecture Diagram](/Docs/images/architecture.png)
 
-
-Data Sources:
-
 - **Data Sources**: 2 data sources from ABS:
     - [Employee Earnings and Hours, Australia](https://www.abs.gov.au/statistics/labour/earnings-and-working-conditions/employee-earnings-and-hours-australia/latest-release). Year: 2016, 2018, 2021, 2023. Includes earnings and hours statistics.
     - [National Occupation Trend - August 2025](https://www.jobsandskills.gov.au/data/labour-force-trending). Sourced from ABS's [Labour Force, Australia, Detailed](https://www.abs.gov.au/statistics/labour/employment-and-unemployment/labour-force-australia-detailed/latest-release). Quarterly employment data at different levels of occupations.
