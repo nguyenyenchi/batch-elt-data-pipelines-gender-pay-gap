@@ -127,5 +127,6 @@ This automatically triggers the Dagster Cloud Prod deployment workflow:
  ![workflow-runs](/Docs/images/workflow-runs.png)
 
 ## 5. Future Improvements
-- Experiment using EventBridge, lamda functions,... on AWS to trigger Dagster whenever a new csv file lands in S3 buckets.
+- Automatically clean Excel files whenever it lands on a S3 bucket
+- Add a way to monitor the pipeline runs with Dagster Cloud: https://dagster.io/integrations/dagster-slack
 - Automate dashboard refreshes by adding Power BI as an asset in Dagster Cloud
